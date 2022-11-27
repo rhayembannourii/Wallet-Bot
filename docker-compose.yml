@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: ./app
+      args:
+        - DEV=true
+    ports:
+      - "9000:9000"
+      - "5005:5005"
+    volumes:
+      - "./app:/app"
+    command: "python manage.py runserver 0.0.0.0:9000"
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db
+  db:
+    image: postgres:13-alpine
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    env_file:
+      - ./.env.db
+  duckling:
+    image: rasa/duckling
+    ports:
+      - "8000:8000"
+  # action_server:
+  # image: rasa/rasa-sdk:latest
+  #   build:
+  #     context: ./app
+  #     dockerfile: Dockerfile.action
+  #   container_name: action_server
+  #   restart: on-failure
+  #   ports:
+  #   - "5055:5055"
+  #   expose:
+  #   - '5055'
+  #   volumes:
+  #   - "./app/actions:/app/actions"
+  #   command: ["start"]
+
+
+volumes:
+  dev-db-data:

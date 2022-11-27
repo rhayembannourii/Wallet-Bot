@@ -1,0 +1,142 @@
+version: "3.1"
+
+intents:
+  - create_bank_account:
+        use_entities: []
+  - account_balance:
+        use_entities: []
+  - make_transaction:
+        use_entities: []
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - bot_challenge
+  - chitchat
+  - inform
+
+
+entities:
+  - account_type
+  - account_number
+  - transaction_type
+  - amount-of-money
+
+slots:
+  account_type:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: account_type
+  amount-of-money:
+    type: any
+    influence_conversation: false
+    mappings:
+    - entity: amount-of-money
+      type: from_entity
+      # conditions:
+      # - active_loop: transaction_form
+      #   requested_slot: amount-of-money
+    # - intent:
+    #   - inform
+    #   - transaction_form
+    #   type: from_text
+    #   conditions:
+    #   - active_loop: transaction_form
+    #     requested_slot: amount-of-money
+    # - type: from_entity
+    #   entity: amount-of-money
+  account_number:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_text
+      conditions:
+      - active_loop: transaction_form
+        requested_slot: account_number
+  transaction_type:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: transaction_type
+
+
+responses:
+  utter_greet:
+    - text: "Hello there! I am your personal financial bot.
+        I can help you create a bank account, check its balance and make deposits and withdrawals. But first, you have to create a bank account!"
+      buttons:
+      - title: "Create a bank account"
+        payload: '/create_bank_account'
+
+  utter_ask_account_form_account_type:
+    - text: "What type of bank account would you like to create?"
+      buttons:
+      - title: "Savings account"
+        payload: '/create_bank_account{{"account_type":"savings"}}'
+      - title: "Credit account"
+        payload: '/create_bank_account{{"account_type":"credit"}}'
+
+  utter_ask_balance_form_account_type:
+    - text: "What type of bank account would you like to see the balance of?"
+      buttons:
+      - title: "Savings accounts balance"
+        payload: '/account_balance{{"account_type":"savings"}}'
+      - title: "Credit accounts balance"
+        payload: '/account_balance{{"account_type":"credit"}}'
+
+  utter_ask_transaction_form_transaction_type:
+    - text: "What type of transaction would you like to make?"
+      buttons:
+      - title: "Deposit"
+        payload: '/make_transaction{{"transaction_type": "deposit"}}'
+      - title: "Withdrawal"
+        payload: '/make_transaction{{"transaction_type":"withdrawal"}}'
+
+  # utter_ask_transaction_form_account_number:
+  #   - text: "On which account would you like to make the transaction?"
+
+  utter_ask_transaction_form_amount-of-money:
+    - text: "What is the amount of the transaction to be made?"
+
+  utter_goodbye:
+  - text: "Bye"
+
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+  utter_submit:
+  - text: "All done!"
+
+actions:
+- action_account_type
+- action_check_balance
+- action_make_transaction
+- action_ask_transaction_form_account_number
+
+
+forms:
+  account_form:
+    ignored_intents:
+    - chitchat
+    required_slots:
+      - account_type
+  balance_form:
+    ignored_intents:
+    - chitchat
+    required_slots:
+      - account_type
+  transaction_form:
+    ignored_intents:
+    - chitchat
+    required_slots:
+      - account_number
+      - transaction_type
+      - amount-of-money
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

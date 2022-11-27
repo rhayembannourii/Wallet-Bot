@@ -1,0 +1,32 @@
+version: "3.1"
+language: en
+pipeline:
+  - name: WhitespaceTokenizer
+  - name: RegexFeaturizer
+  - name: LexicalSyntacticFeaturizer
+  - name: CountVectorsFeaturizer
+  - name: CountVectorsFeaturizer
+    analyzer: "char_wb"
+    min_ngram: 1
+    max_ngram: 4
+  - name: DIETClassifier
+    epochs: 100
+  - name: FallbackClassifier
+    threshold: 0.7
+  - name: DucklingEntityExtractor
+    url: http://duckling:8000
+    dimensions:
+    - amount-of-money
+  - name: SpacyNLP
+    model: "en_core_web_md"
+    case_sensitive: false
+  - name: EntitySynonymMapper
+
+policies:
+- name: AugmentedMemoizationPolicy
+- name: TEDPolicy
+  epochs: 40
+- name: RulePolicy
+  core_fallback_threshold: 0.4
+  core_fallback_action_name: "action_default_fallback"
+  enable_fallback_prediction: True

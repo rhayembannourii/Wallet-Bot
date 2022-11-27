@@ -1,0 +1,157 @@
+version: "3.1"
+
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+
+- intent: create_bank_account
+  examples: |
+    - i want to create an account
+    - create a bank account
+    - make an account
+    - request a [credit](account_type) account
+    - create a [savings](account_type) account
+    - i'm looking to make a [savings](account_type) account
+    - how to create a [credit](account_type)
+    - make accnt
+    - create accont
+    - i would like to me an account
+    - i would like to make a [savings](account_type) account
+    - i would like to make a [credit](account_type) account
+
+- intent: chitchat
+  examples: |
+    - can you share your boss with me?
+    - i want to get to know your owner
+    - i want to know the company which designed you
+    - i want to know the company which generated you
+    - i want to know the company which invented you
+    - i want to know who invented you
+    - May I ask who invented you?
+    - please tell me the company who created you
+    - please tell me who created you
+    - tell me more about your creators
+    - tell me more about your founders
+    - Ahoy matey how are you?
+    - are you alright
+    - are you having a good day
+    - Are you ok?
+    - are you okay
+    - Do you feel good?
+    - how are things going
+    - how are things with you?
+    - How are things?
+    - how are you
+    - how are you doing
+    - how are you doing this morning
+
+
+- intent: account_balance
+  examples: |
+    - i want to check the balance of my account
+    - what's my account balance?
+    - how much money do i have ?
+    - what is on my [credit](account_type) account balance
+    - how much do i have on my [savings](account_type) account
+    - i'm looking to see me [savings](account_type) account
+    - show me my [credit](account_type) accounts
+    - can you list my [savings](account_type) accounts
+    - balance
+    - balances please
+    - account balance
+    - what's my remaining balance
+    - show me my accounts
+    - balance [credit](account_type)
+    - balance [savings](account_type)
+    - what is my balance in my [savings](account_type) account
+    - my balance [savings](account_type)
+    - my current balance [creidt](account_type) account
+    - how much money do i have on my [credit](account_type) account
+
+
+- intent: make_transaction
+  examples: |
+    - i want to make a transaction
+    - i would like to make a [deposit](transaction_type)
+    - i would like to make a [withdrawal](transaction_type)
+    - i want to [send](transaction_type) 60$ to my [savings](account_type)
+    - can you help make a transaction to my [credit](account_type) account
+    - can i [withdraw](transaction_type) 40 dollars from my [savings](account_type) account
+    - can i [deposit](transaction_type) 10 bucks to my [savings](account_type) account
+    - help me make a transaction to my [credit](account_type) account
+    - show me how to [save](transaction_type) my money
+    - make a 30$ [deposit](transaction_type)
+    - perform a 26$ [withdrawal](transaction_type)
+    - make a [deposit](transaction_type)
+    - make a [withdrawal](transaction_type)
+
+
+- intent: inform
+  examples: |
+    - [savings](account_type)
+    - [credit](account_type)
+    - [deposit](transaction_type)
+    - [withdrawal](transaction_type)
+    - [withdraw](transaction_type)
+    - [save](transaction_type)
+    - my [savings](account_type) account
+    - my balance
+    - full balance
+    - [credit](account_type) account
+    - my [credit](account_type) account
+    - 30$
+    - one hundred dollars
+    - one dollar
+    - 20 bucks
