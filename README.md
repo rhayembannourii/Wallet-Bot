@@ -1,6 +1,6 @@
 <p align="center"><img src="./assets/bot.png" width="10%"></p>
-<h1 align="center">Bankeji Bot 💬</h1>
-<p align="center">Bankeji Bot which can create bank accounts,
+<h1 align="center">Wallet Bot 💬</h1>
+<p align="center">Wallet Bot which can create bank accounts,
  deposit and withdraw money, check the accounts balance, answer FAQ questions and chitchat with users.</p>
 <p align="center">
   <img src="https://img.shields.io/pypi/pyversions/rasa">
